@@ -2,7 +2,7 @@ package main
 
 import (
 	"gin-demo/global"
-	"gin-demo/server"
+	"gin-demo/initialize"
 	"gin-demo/router"
 	db "gin-demo/database"
 )
@@ -22,8 +22,8 @@ import (
 // @BasePath /
 func main() {
 	
-	global.VP = server.Viper() // 初始化Viper
-	global.LOG = server.Zap()           // 初始化zap日志库
+	global.VP = initialize.Viper() // 初始化Viper
+	global.LOG = initialize.Zap()           // 初始化zap日志库
 	global.DB = db.Gorm()     // gorm连接数据库
 	db.MysqlTables(global.DB) // 初始化表
 
@@ -31,5 +31,5 @@ func main() {
 	db, _ := global.DB.DB()
 	defer db.Close()
 	router.Run() // 监听并在 0.0.0.0:8080 上启动服务
-	// server.RunWindowsServer()
+	// initialize.RunWindowsinitialize()
 }

@@ -20,6 +20,9 @@ func Run() {
 	{
 		statisticsRouter.POST("meta", v1.CreateMetas)
 		statisticsRouter.GET("meta", v1.GetMetas)
+		statisticsRouter.POST("data", v1.CreateStatisticsData)
+		statisticsRouter.GET("interval", v1.GetIntervalData)
+		statisticsRouter.GET("interval/unit", v1.GetIntervalUnitData)
 	}
 	router.Run()
 }

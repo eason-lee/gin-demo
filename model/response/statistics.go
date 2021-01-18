@@ -2,7 +2,6 @@ package response
 
 import (
 	"gin-demo/model"
-	"time"
 )
 
 // StatisticsMeta ...
@@ -15,9 +14,15 @@ type StatisticsMetaList struct {
 	Meta []model.StatisticsMeta `json:"metas"`
 }
 
-// Data ...
-type Data struct {
-	MetaID   uint      `json:"meta_id"`
-	Datetime time.Time `json:"datetime"`
-	Val      float32   `json:"val"`
+// IntervalData ...
+type IntervalData struct {
+	MetaID uint    `json:"meta_id"`
+	Total  float32 `json:"val"`
+}
+
+// IntervalUnitData ...
+type IntervalUnitData struct {
+	MetaID uint    `json:"meta_id"`
+	Time   string  `json:"d_t"`
+	Total  float32 `json:"val"`
 }
