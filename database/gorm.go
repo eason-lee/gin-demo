@@ -3,7 +3,7 @@ package db
 import (
 	"gin-demo/global"
 	"gin-demo/model"
-	"gin-demo/server"
+	"gin-demo/initialize"
 	"os"
 
 	"go.uber.org/zap"
@@ -77,21 +77,21 @@ func gormConfig(mod bool) *gorm.Config {
 	var config = &gorm.Config{DisableForeignKeyConstraintWhenMigrating: true}
 	switch global.CONFIG.Mysql.LogZap {
 	case "silent", "Silent":
-		config.Logger = server.Default.LogMode(logger.Silent)
+		config.Logger = initialize.Default.LogMode(logger.Silent)
 	case "error", "Error":
-		config.Logger = server.Default.LogMode(logger.Error)
+		config.Logger = initialize.Default.LogMode(logger.Error)
 	case "warn", "Warn":
-		config.Logger = server.Default.LogMode(logger.Warn)
+		config.Logger = initialize.Default.LogMode(logger.Warn)
 	case "info", "Info":
-		config.Logger = server.Default.LogMode(logger.Info)
+		config.Logger = initialize.Default.LogMode(logger.Info)
 	case "zap", "Zap":
-		config.Logger = server.Default.LogMode(logger.Info)
+		config.Logger = initialize.Default.LogMode(logger.Info)
 	default:
 		if mod {
-			config.Logger = server.Default.LogMode(logger.Info)
+			config.Logger = initialize.Default.LogMode(logger.Info)
 			break
 		}
-		config.Logger = server.Default.LogMode(logger.Silent)
+		config.Logger = initialize.Default.LogMode(logger.Silent)
 	}
 	return config
 }
